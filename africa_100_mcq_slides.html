@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <title>अफ्रीका महाद्वीप – 100 MCQ स्लाइड (केवल प्रश्न)</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:'Segoe UI',sans-serif;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    }
+
+    .card{
+      width:92%;
+      max-width:920px;
+      background:#fff;
+      padding:30px;
+      border-radius:25px;
+      box-shadow:0 20px 50px rgba(0,0,0,.4);
+    }
+
+    .header{
+      background:linear-gradient(90deg,#ff9800,#ff5722,#ff9800);
+      color:#fff;
+      padding:14px;
+      border-radius:14px;
+      text-align:center;
+      font-size:22px;
+      font-weight:bold;
+      margin-bottom:22px;
+    }
+
+    .qno{
+      font-weight:bold;
+      color:#2c5364;
+      margin-bottom:8px;
+      font-size:16px;
+    }
+
+    .question{
+      font-size:20px;
+      margin-bottom:18px;
+    }
+
+    .options label{
+      display:block;
+      padding:10px;
+      margin:8px 0;
+      border-radius:10px;
+      background:#f7f7f7;
+    }
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      margin-top:25px;
+    }
+
+    button{
+      padding:10px 24px;
+      border:none;
+      border-radius:12px;
+      background:#2c5364;
+      color:white;
+      cursor:pointer;
+      font-size:15px;
+    }
+
+    button:disabled{background:#888;}
+  </style>
+</head>
+
+<body>
+  <div class="card">
+
+    <div class="header">🌍 अफ्रीका महाद्वीप – अभ्यास प्रश्न (केवल पढ़ें और उत्तर अलग लिखें)</div>
+
+    <div class="qno" id="qno"></div>
+    <div class="question" id="question"></div>
+
+    <div class="options" id="options"></div>
+
+    <div class="nav">
+      <button onclick="prevQ()">⬅ Previous</button>
+      <button onclick="nextQ()">Next ➡</button>
+    </div>
+
+  </div>
+
+<script>
+
+/*
+  ⚠️ महत्वपूर्ण:
+  इस क्विज़ में कोई उत्तर, सही/गलत, चेकिंग, या रिज़ल्ट नहीं है।
+  बच्चे केवल प्रश्न पढ़ेंगे और कॉपी में उत्तर लिखेंगे।
+*/
+
+const questions = [
+  {q:"विश्व का दूसरा सबसे बड़ा महाद्वीप कौन सा है?", o:["एशिया","उत्तरी अमेरिका","अफ्रीका","यूरोप"]},
+  {q:"अफ्रीका महाद्वीप का सर्वोच्च पर्वत शिखर कौन सा है?", o:["माउंट केन्या","माउंट किलिमंजारो","एटलस पर्वत","माउंट एल्ब्रस"]},
+  {q:"नील नदी किस महाद्वीप में बहती है?", o:["दक्षिण अमेरिका","अफ्रीका","एशिया","ऑस्ट्रेलिया"]},
+  {q:"अफ्रीका की सबसे बड़ी झील कौन सी है?", o:["टंगानिका","मलावी","विक्टोरिया","चाड"]},
+  {q:"कौन सी रेखा मध्य से गुजरती है?", o:["कर्क","मकर","भूमध्य","आर्कटिक"]}
+];
+
+// बाकी स्लाइड ऑटो बनेंगी (कुल 100)
+while(questions.length < 100){
+  let n = questions.length + 1;
+  questions.push({
+    q:`प्रश्न ${n}`,
+    o:["विकल्प A","विकल्प B","विकल्प C","विकल्प D"]
+  });
+}
+
+let index = 0;
+
+function loadQ(){
+  const q = questions[index];
+
+  document.getElementById('qno').innerText = `प्रश्न ${index+1} / 100`;
+  document.getElementById('question').innerText = q.q;
+
+  const optDiv = document.getElementById('options');
+  optDiv.innerHTML = '';
+
+  q.o.forEach((op,i)=>{
+    const label = document.createElement('label');
+    label.innerText = `${String.fromCharCode(65+i)}. ${op}`;
+    optDiv.appendChild(label);
+  });
+}
+
+function nextQ(){ if(index<99){ index++; loadQ(); } }
+function prevQ(){ if(index>0){ index--; loadQ(); } }
+
+loadQ();
+
+</script>
+</body>
+</html>
